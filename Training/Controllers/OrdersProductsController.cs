@@ -4,28 +4,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Training.API.Operations;
 using Microsoft.Extensions.DependencyInjection;
+using Training.API.Operations;
 
 namespace Training.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class OrdersProductsController : ControllerBase
     {
         private readonly IServiceProvider _IoC;
 
-        public UsersController(IServiceProvider services)
+        public OrdersProductsController(IServiceProvider service)
         {
-            _IoC = services;
+            _IoC = service;
         }
-
         [HttpGet]
-        public async Task<List<DTO.User>> GetUsers()
+        public async Task<List<DTO.OrderProduct>> GetProducts()
         {
-            return await _IoC.GetService<GetUsers>().Execute();
+            return await _IoC.GetService<GetOrdersProducts>().Execute();
         }
-
-
     }
 }

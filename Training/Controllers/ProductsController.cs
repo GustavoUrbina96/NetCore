@@ -11,21 +11,19 @@ namespace Training.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         private readonly IServiceProvider _IoC;
 
-        public UsersController(IServiceProvider services)
+        public ProductsController(IServiceProvider service)
         {
-            _IoC = services;
+            _IoC = service;
         }
 
         [HttpGet]
-        public async Task<List<DTO.User>> GetUsers()
+        public async Task<List<DTO.Products>> GetProducts()
         {
-            return await _IoC.GetService<GetUsers>().Execute();
+            return await _IoC.GetService<GetProducts>().Execute();
         }
-
-
     }
 }

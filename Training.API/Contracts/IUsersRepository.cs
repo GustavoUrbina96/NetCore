@@ -10,4 +10,18 @@ namespace Training.API.Contracts
     {
         Task<List<User>> GetAll();
     }
+
+    public interface IProductsRepository
+    {
+        Task<List<Products>> GetAll();
+    }
+    public interface IOrdersRepository
+    {
+        Task<List<Orders>> GetAll();
+    }
+
+    public interface IOrderProductRepository
+    {
+        Task<List<OrderProduct>> GetAll();
+    }
 }

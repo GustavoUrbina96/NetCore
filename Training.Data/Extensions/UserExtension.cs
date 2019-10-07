@@ -6,12 +6,14 @@ namespace Training.Data.Extensions
 {
     public static class UserExtension
     {
-        public static DTO.User ToDTO(this Models.User u){
+        public static DTO.User ToDTO(this Models.User u)
+        {
             return new DTO.User
             {
-                Id = u.Id.ToString(),
-                Email = u.Email,
+                Id = u.Id,
                 FullName = u.FullName
+                //Created_at = u.Created_at,
+                //Country_code = u.Country_code
             };
         }
 
@@ -19,10 +21,10 @@ namespace Training.Data.Extensions
         {
             return new Models.User
             {
-                Id = Guid.Parse(u.Id),
-                Email = u.Email,
-                FullName = u.FullName,
-                Gender = u.Gender,
+                Id = u.Id,
+                FullName = u.FullName
+                //Created_at = u.Created_at,
+                //Country_code = u.Country_code
 
             };
         }

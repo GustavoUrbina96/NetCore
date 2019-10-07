@@ -23,9 +23,12 @@ namespace Training
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = Configuration.GetConnectionString("sqlite");
+            //Conexion con sql server
+            var connectionSQLServer = Configuration.GetConnectionString("sqlserver");
+
+            //var connection = Configuration.GetConnectionString("sqlite");
             services.AddDbContext<StoreContext>
-                (options => options.UseSqlite(connection));
+                (options => options.UseSqlServer(connectionSQLServer));
 
             ConfigureOperations(services);
             ConfigureRepositories(services);
@@ -37,11 +40,19 @@ namespace Training
         public void ConfigureOperations(IServiceCollection services)
         {
             services.AddTransient<GetUsers>();
+            services.AddTransient<GetProducts>();
+            services.AddTransient<GetOrders>();
+            services.AddTransient<GetOrdersProducts>();
         }
 
         public void ConfigureRepositories(IServiceCollection services)
         {
-            services.AddTransient<IUsersRepository,UsersRepository>();
+            services.AddTransient<IUsersRepository, UsersRepository>();
+            services.AddTransient<IOrdersRepository, OrdersRepository>();
+            services.AddTransient<IProductsRepository, ProductsRepository>();
+            services.AddTransient<IOrderProductRepository, OrdersProductsRepository>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
